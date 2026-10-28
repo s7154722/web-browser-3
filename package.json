@@ -1,0 +1,12 @@
+{
+  "name": "webspace-cloudflare-pages",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler pages dev .",
+    "deploy": "wrangler pages deploy . --project-name webspace"
+  },
+  "devDependencies": {
+    "wrangler": "^4.45.0"
+  }
+}

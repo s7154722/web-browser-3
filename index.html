@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101522">
+  <meta name="description" content="A private-feeling web portal with search, bookmarks and an in-site browsing frame.">
+  <title>WebSpace — Your web, in one place</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="WebSpace home">
+        <span class="brand-mark">W</span>
+        <span>web<span class="brand-light">space</span></span>
+      </a>
+      <div class="topbar-center"><span class="status-dot"></span><span>YOUR WEB, IN ONE PLACE</span></div>
+      <button class="icon-button" id="homeButton" title="Home" aria-label="Home">⌂</button>
+    </header>
+
+    <main>
+      <section class="welcome" id="welcome">
+        <div class="eyebrow"><span class="eyebrow-line"></span> A LITTLE SPACE ON THE INTERNET</div>
+        <h1>Where do you want<br><span>to go today?</span></h1>
+        <p class="welcome-copy">Search the web or enter an address. Open pages inside WebSpace and keep your workspace in one place.</p>
+
+        <form class="search-form" id="searchForm" role="search">
+          <span class="search-icon" aria-hidden="true">⌕</span>
+          <input id="searchInput" type="text" autocomplete="off" placeholder="Search the web or enter a URL..." aria-label="Search the web or enter a URL">
+          <button class="search-button" type="submit">Search <span>↗</span></button>
+        </form>
+        <div class="search-hint"><span class="keycap">ENTER</span> to search <span class="hint-dot">·</span> <span class="keycap">HTTPS</span> addresses supported</div>
+
+        <section class="quick-section" aria-labelledby="quickTitle">
+          <div class="section-heading"><h2 id="quickTitle">QUICK ACCESS</h2><span>YOUR STARTING POINTS</span></div>
+          <div class="quick-grid">
+            <button class="quick-card" data-url="https://www.wikipedia.org/"><span class="quick-icon wiki">W</span><span><b>Wikipedia</b><small>Explore knowledge</small></span><span class="quick-arrow">↗</span></button>
+            <button class="quick-card" data-url="https://www.youtube.com/"><span class="quick-icon youtube">▶</span><span><b>YouTube</b><small>Videos and more</small></span><span class="quick-arrow">↗</span></button>
+            <button class="quick-card" data-url="https://www.reddit.com/"><span class="quick-icon reddit">r</span><span><b>Reddit</b><small>Communities</small></span><span class="quick-arrow">↗</span></button>
+            <button class="quick-card" data-url="https://www.google.com/"><span class="quick-icon google">G</span><span><b>Google</b><small>Find something</small></span><span class="quick-arrow">↗</span></button>
+          </div>
+        </section>
+
+        <section class="bookmarks-section" aria-labelledby="bookmarkTitle">
+          <div class="section-heading"><h2 id="bookmarkTitle">SAVED PAGES</h2><span>STORED ON THIS DEVICE</span></div>
+          <div class="bookmark-list" id="bookmarkList"><div class="empty-bookmarks">Your saved pages will show up here.</div></div>
+        </section>
+      </section>
+
+      <section class="browser" id="browser" hidden>
+        <div class="tab-row">
+          <div class="tabs" id="tabs"></div>
+          <button class="new-tab" id="newTabButton" aria-label="New tab" title="New tab">＋</button>
+        </div>
+        <div class="toolbar">
+          <button class="tool-button" id="backButton" title="Back" aria-label="Back">←</button>
+          <button class="tool-button" id="forwardButton" title="Forward" aria-label="Forward">→</button>
+          <button class="tool-button" id="reloadButton" title="Reload" aria-label="Reload">↻</button>
+          <button class="tool-button home-tool" id="browserHomeButton" title="Home" aria-label="Home">⌂</button>
+          <form class="address-form" id="addressForm">
+            <span class="lock-icon">⌑</span>
+            <input id="addressInput" type="text" autocomplete="off" spellcheck="false" aria-label="Website address" placeholder="Search or enter a website address">
+            <button type="submit" aria-label="Go to address">↵</button>
+          </form>
+          <button class="tool-button" id="bookmarkButton" title="Save this page" aria-label="Save this page">☆</button>
+          <button class="tool-button" id="homeViewButton" title="Show start page" aria-label="Show start page">▦</button>
+        </div>
+        <div class="browser-stage">
+          <div class="results-view" id="resultsView" hidden>
+            <div class="results-topline"><span class="eyebrow-line"></span><span>WEB SEARCH</span></div>
+            <h2 id="resultsHeading">Search results</h2>
+            <div class="results-meta" id="resultsMeta"></div>
+            <div id="resultsList" class="results-list"></div>
+          </div>
+          <div class="frame-wrap" id="frameWrap" hidden>
+            <div class="frame-note" id="frameNote"><span>ⓘ</span> Some websites block being shown inside another site. If a page stays blank or says it refused to connect, that is the website's restriction—not a problem with your Cloudflare Pages site.</div>
+            <iframe id="pageFrame" title="Web page" sandbox="allow-forms allow-scripts allow-downloads" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+          <div class="browser-empty" id="browserEmpty">
+            <div class="empty-orbit">W</div>
+            <h2>Your next destination?</h2>
+            <p>Search for something or type a website address above.</p>
+            <button class="outline-button" id="returnHomeButton">Back to start page</button>
+          </div>
+        </div>
+        <div class="browser-footer"><span><i class="status-dot"></i> WEBSPACE SESSION</span><span>Pages that permit embedding work best here.</span></div>
+      </section>
+    </main>
+    <footer class="site-footer"><span>WEBSPACE <span class="footer-divider">/</span> A SIMPLE WEB PORTAL</span><span>Your bookmarks stay in this browser.</span></footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="/app.js" defer></script>
+</body>
+</html>
